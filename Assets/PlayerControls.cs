@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 
 
 public class PlayerControls : MonoBehaviour
 {
+    public GameObject;
+    float hp = 10;
     Vector2 inputVector;
     Rigidbody rb;
-    
+    public GameObject bulletPrefab;
+    public float bulletSpeed = 20;
+    Vector2 movementVector;
+    Transform bulletSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
         inputVector = Vector2.zero;
         rb = GetComponent<Rigidbody>();
+        bulletSpawn = transform.Find("BulletSpawn");
     }
 
     // Update is called once per frame
@@ -53,4 +60,11 @@ public class PlayerControls : MonoBehaviour
 
     }
 
+
+    void OnFire()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn);
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward, ForceMode.Impulse);
+        Destroy(bullet, 5f);
+    }
 }
