@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
-    public GameObject;
+
     float hp = 10;
     Vector2 inputVector;
     Rigidbody rb;
@@ -64,7 +64,7 @@ public class PlayerControls : MonoBehaviour
     void OnFire()
     {
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn);
-        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward, ForceMode.Impulse);
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 10, ForceMode.Impulse);
         Destroy(bullet, 5f);
     }
 }
