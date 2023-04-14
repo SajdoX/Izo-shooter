@@ -1,41 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour
 {
     Transform player;
-    int hp = 10;
+    GameObject enemy;
+    NavMeshAgent agent;
+    float hp;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-       
+        agent = GetComponent<NavMeshAgent>();
+        hp = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player.position);
-        
-        transform.Translate(Vector3.forward * Time.deltaTime);
+        //transform.LookAt(player.position);
+        //transform.Translate(Vector3.forward * Time.deltaTime);
+
+        agent.destination = (player.position);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    
+    public void ReceiveDamage()
     {
-        if(collision.gameObject.CompareTag("Bullet"))
+        hp -= 1;
+        if (hp <= 0)
         {
-            Destroy(collision.gameObject);
-            hp--;
-            if(hp <= 0)
-            {
-                transform.Translate(Vector3.up);
-                transform.Rotate(Vector3.right * -90);
-                GetComponent<BoxCollider>().enabled = false;
-                Destroy(transform.gameObject, 5);
-            }
+            Die();
         }
     }
 
-
+    void Die()
+    {
+        Destroy(gameObject);
+    }
 }
