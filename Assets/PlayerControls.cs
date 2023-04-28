@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerControls : MonoBehaviour
@@ -16,7 +17,7 @@ public class PlayerControls : MonoBehaviour
 
     public void GameOver()
     {
-        GameOverScreen.Setup(kills);
+        SceneManager.LoadScene("GameOver");
     }
   
    void OnTriggerEnter(Collider col)
@@ -37,7 +38,7 @@ public class PlayerControls : MonoBehaviour
     {
         if(hp <= 0)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             GameOver();
 
         }

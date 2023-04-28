@@ -15,7 +15,16 @@ public class DamageController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<ZombieController>().ReceiveDamage();
+            Debug.Log("Zombie dmg");
+        }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<ZombieController>().ReceiveDamage();
+            Debug.Log("Zombie dmg");
         }
     }
 }
