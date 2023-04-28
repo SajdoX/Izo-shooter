@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,7 +11,7 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale= 1.0f;
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
@@ -18,12 +19,11 @@ public class LevelController : MonoBehaviour
     {
         if (Time.time > spawnTimer)
         {
-            Vector3 randomSpawnPosition = new Vector3(Random.Range(-10, 11), 1,Random.Range(-10,11 ));
+            Vector3 randomSpawnPosition = new Vector3(Random.Range(-10, 11), 1, Random.Range(-10, 11));
             spawnTimer += 2;
             Instantiate(zombiePrefab, randomSpawnPosition, Quaternion.identity);
         }
 
     }
-
 
 }
